@@ -18,6 +18,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/checkout@v4
         with:
           # Original English distribution from upstream v330.10.
@@ -52,7 +54,8 @@ jobs:
           Copy-Item "$env:RUNNER_TEMP/favorite-converter/MenuZhCN.dll" $package
           dotnet run --no-build --project localization/build -c Release -- "$pwd" $package --verify
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
-          if (Test-Path MenuZhCN.dll) {
+          $shipped = git diff-tree --no-commit-id --name-only -r HEAD -- '*.dll' '*.deps.json'
+          if ($shipped -and (Test-Path MenuZhCN.dll)) {
             dotnet run --no-build --project localization/build -c Release -- "$pwd" "$pwd" --verify
             if ($LASTEXITCODE) { exit $LASTEXITCODE }
           }

@@ -15,7 +15,8 @@
           "Serilog": "4.4.0",
           "Serilog.Sinks.File": "7.0.0",
           "SharpDX": "4.2.0",
-          "SharpDX.Mathematics": "4.2.0"
+          "SharpDX.Mathematics": "4.2.0",
+          "MenuZhCN": "1.0.0"
         },
         "runtime": {
           "Loader.dll": {}
@@ -82,6 +83,11 @@
             "fileVersion": "4.2.0.0"
           }
         }
+      },
+      "MenuZhCN/1.0.0": {
+        "runtime": {
+          "MenuZhCN.dll": {}
+        }
       }
     }
   },
@@ -139,6 +145,11 @@
       "sha512": "sha512-R2pcKLgdsP9p5WyTjHmGOZ0ka0zASAZYc6P4L6rSvjYhf6klGYbent7MiVwbkwkt9dD44p5brjy5IwAnVONWGw==",
       "path": "sharpdx.mathematics/4.2.0",
       "hashPath": "sharpdx.mathematics.4.2.0.nupkg.sha512"
+    },
+    "MenuZhCN/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -27,7 +27,8 @@
           "Vanara.PInvoke.Kernel32": "5.0.7",
           "Vanara.PInvoke.Multimedia": "5.0.7",
           "Vanara.PInvoke.User32": "5.0.7",
-          "morelinq": "4.0.0"
+          "morelinq": "4.0.0",
+          "MenuZhCN": "1.0.0"
         },
         "runtime": {
           "ExileCore.dll": {}
@@ -422,6 +423,11 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "MenuZhCN/1.0.0": {
+        "runtime": {
+          "MenuZhCN.dll": {}
+        }
       }
     }
   },
@@ -682,6 +688,11 @@
       "sha512": ""
     },
     "GameOffsets/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MenuZhCN/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
