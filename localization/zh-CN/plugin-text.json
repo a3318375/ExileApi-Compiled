@@ -88,6 +88,10 @@
       "Set the ilvl Min/Max you wish to pickup for Full Rare Set Manager overrides\nIt is up to you how to use these two features\nit does not change how FullRareSetManager counts its sets.\nDefault: -1\n-1 will disable these overrides": "设置要拾取的物品等级范围。此设置只影响拾取，不影响套数统计。默认值 -1 表示使用原规则。",
       "Minimum Item Level##FRSMOverrides9": "最低物品等级##FRSMOverrides9",
       "Max Item Level##FRSMOverrides10": "最高物品等级##FRSMOverrides10"
+    },
+    "Random_Features.Libs.ImGuiExtension::HotkeySelector": {
+      " Press new key to change '": " 按新键修改“",
+      "' or Esc for exit.": "”，按 Esc 退出。"
     }
   },
   "BasicFlaskRoutine": {
@@ -156,6 +160,266 @@
       "Min ES %": "能量护盾阈值（%）",
       "Use offensive flasks for defense": "将进攻药剂同时用于防御",
       "Offensive Flasks": "进攻药剂"
+    },
+    "TreeRoutine.Menu.ImGuiExtension::HotkeySelector": {
+      " Press new key to change '": " 按新键修改“",
+      "' or Esc for exit.": "”，按 Esc 退出。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.ExtensionCondition::CreateConfigurationMenu": {
+      "Invert": "反转条件",
+      "Check this box to invert the returned value of this condition.\nFor Example when enabled, if the condition returns true when in hideout, it would now return true when NOT in hideout.": "勾选后将条件结果取反。例如，原条件要求在藏身处，取反后则要求在藏身处以外。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Actions.SendKeyAction::CreateConfigurationMenu": {
+      "Action Info": "动作说明",
+      "This action is used to send a hotkey to the game.": "向游戏发送指定的快捷键。",
+      "Hotkey": "快捷键",
+      "Hotkey to press for this action.": "执行此动作时按下的快捷键。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Actions.TimerAction::CreateConfigurationMenu": {
+      "Action Info": "动作说明",
+      "This timer is used to begin or end a specific timer": "启动或结束指定的计时器。",
+      "Timer Name": "计时器名称",
+      "Name for this timer": "此计时器的名称。",
+      "Start Timer": "启动计时器",
+      "End Timer": "停止计时器"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Actions.UseFlaskAction::CreateConfigurationMenu": {
+      "Action Info": "动作说明",
+      "This action is used to use a specific flask.\nFlask Hotkey will be pulled from plugin settings.": "使用指定栏位的药剂，按键取自插件设置。",
+      "Flask Index": "药剂栏位",
+      "Index for flask to be used (1= farthest left, 5 = farthest right)": "从左到右依次为 1 至 5。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Actions.UseFlaskTypeAction::CreateConfigurationMenu": {
+      "Action Info": "动作说明",
+      "This action is used to use a specific type(s) of flask.\nFlask Hotkey will be pulled from plugin settings.\nFlask types will be pulled from the file /config/flaskinfo.json": "按类型使用药剂。快捷键来自插件设置，药剂类型定义在 /config/flaskinfo.json 中。",
+      "Life": "生命",
+      "Mana": "魔力",
+      "Hybrid": "复合",
+      "Use Instant": "使用瞬回",
+      "This only makes sense to use with life/mana/hybrid flasks": "仅适用于生命、魔力或复合药剂。",
+      "Defense": "防御",
+      "Offense": "进攻",
+      "Utility": "功能",
+      "Speedrun": "移动",
+      "Unique": "传奇",
+      "Offense and Speedrun": "进攻和移动",
+      "Poison": "中毒",
+      "Freeze": "冰冻",
+      "Ignite": "点燃",
+      "Shock": "感电",
+      "Bleed": "流血",
+      "Curse": "诅咒",
+      "Reserved Charges": "预留充能"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Actions.UseVaalSkillAction::CreateConfigurationMenu": {
+      "Vaal Skills": "瓦尔技能",
+      "Vaal Haste": "瓦尔：迅捷",
+      "Vaal Grace": "瓦尔：优雅",
+      "Vaal Clarity": "瓦尔：清晰",
+      "Vaal Reave": "瓦尔：冲击波",
+      "This action is used to configure Vaal Skills": "配置要使用的瓦尔技能。",
+      "Hotkey": "快捷键",
+      "Hotkey to press for the first Vaal Skill.": "第一个瓦尔技能的快捷键。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.CanUseFlaskCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition is used to determine if we can use a specific flask.\nIt will ensure that health/hybrid/mana potions are not used when we are at full health/mana.\nThis will also ensure that we do not use up reserved uses.": "检查指定药剂能否使用。生命或魔力已满时跳过相应的回复药剂，并保留预设的使用次数。",
+      "Flask Index": "药剂栏位",
+      "Reserved Uses": "保留使用次数"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.CanUseSkillCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition is used to determine if we can use a specific skill.\nSkill name can be obtained through DevTree by looking through the player's actor component, then actor skills list.": "检查指定技能能否使用。可在 DevTree 的玩家 Actor 组件中查看技能列表及其名称。",
+      "Skill Name": "技能名称"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.EnergyShieldPercentCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition will return true if the player's energy shield percentage is above/below the specified amount.": "能量护盾百分比高于或低于设定值时满足条件。",
+      "Above Percentage": "高于阈值",
+      "Below Percentage": "低于阈值",
+      "Energy Shield Percentage": "能量护盾百分比"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.HasCurableAilmentCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition will return true if the player has any of the selected ailments or a minimum of the specified corrupted blood stacks.": "身上有选中的异常状态，或腐化之血达到设定层数时满足条件。",
+      "Frozen": "冰冻",
+      "Burning": "燃烧",
+      "Shocked": "感电",
+      "Curse": "诅咒",
+      "Poison": "中毒",
+      "Bleed": "流血",
+      "Corruption Count": "腐化之血层数",
+      "Ignore Infinite Timer": "忽略无限时长的效果"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.HasFlaskBuffCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition is used to determine if we have the flask buff up already.": "检查指定栏位的药剂效果是否已生效。",
+      "Flask Index": "药剂栏位"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.HealthPercentCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition will return true if the player's health percentage is above/below the specified amount.": "生命百分比高于或低于设定值时满足条件。",
+      "Above Percentage": "高于阈值",
+      "Below Percentage": "低于阈值",
+      "Health Percentage": "生命百分比"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.IsKeyPressedCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "Hotkey to check for pressed down state": "检查指定快捷键是否被按住。",
+      "Hotkey": "快捷键",
+      "Hotkey to press for this action.": "需要检查的快捷键。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.LoweredResistanceCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition will return true if any of the selected player's resistances\nare reduced by more than or equal to the specified amount.\nReduced max resistance modifiers are taken into effect automatically (e.g. -res map mods).": "所选抗性中有一项降低达到阈值时满足条件。会自动计入降低抗性上限的效果，例如地图词缀。",
+      "Cold": "冰霜",
+      "Fire": "火焰",
+      "Lightning": "闪电",
+      "Chaos": "混沌",
+      "Resistance Threshold": "抗性降低阈值"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.ManaPercentCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition will return true if the player's mana percentage is above/below the specified amount.": "魔力百分比高于或低于设定值时满足条件。",
+      "Above Percentage": "高于阈值",
+      "Below Percentage": "低于阈值",
+      "Mana Percentage": "魔力百分比"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.NearbyMonstersCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition will return true if any of the selected player's resistances\nare reduced by more than or equal to the specified amount.\nReduced max resistance modifiers are taken into effect automatically (e.g. -res map mods).": "根据检测距离、稀有度、抗性和生命等条件统计附近的怪物。",
+      "Minimum Monster Count": "最少怪物数量",
+      "Maximum Distance": "最大距离",
+      "Preview distance": "预览检测范围",
+      "Cold Resist Above": "冰霜抗性高于",
+      "Fire Resist Above": "火焰抗性高于",
+      "Lightning Resist Above": "闪电抗性高于",
+      "Chaos Resist Above": "混沌抗性高于",
+      "White Monsters": "普通怪物",
+      "Rare Monsters": "稀有怪物",
+      "Magic Monsters": "魔法怪物",
+      "Unique Monsters": "传奇怪物",
+      "Monster Health Percent": "怪物生命百分比",
+      "Above Health Threshold": "高于生命阈值"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.PlayerHasBuffCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition will return true if the player has any of the selected ailments or a minimum of the specified corrupted blood stacks.": "检查玩家是否具有符合条件的效果。",
+      "Buff List": "效果列表",
+      "Filter Buffs": "筛选效果",
+      "Remaining Duration": "剩余持续时间",
+      "Includes buffs with duration longer than specified. Set to 0 to ignore duration.": "计入剩余持续时间超过此值的效果。设为 0 可忽略时长。",
+      "Minimum Charges": "最少层数",
+      "Includes buffs with charges greater or equal to specified value. Set to 0 to ignore charges.": "计入层数达到此值的效果。设为 0 可忽略层数。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.PlayerMovingCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition will return true if the player has been moving longer than the specified time.": "玩家持续移动超过设定时长时满足条件。",
+      "Time spent moving (ms)": "持续移动时间（毫秒）",
+      "Player must remain moving for this configured number of milliseconds (1000ms = 1 sec) before this condition returns true": "持续移动须达到设定的毫秒数。1000 毫秒等于 1 秒。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.Extension.Default.Conditions.TimerCondition::CreateConfigurationMenu": {
+      "Condition Info": "条件说明",
+      "This condition is used to determine if we can use a specific flask.\nIt will ensure that health/hybrid/mana potions are not used when we are at full health/mana.\nThis will also ensure that we do not use up reserved uses.": "检查指定计时器已经过的时间，或检查它是否已停止。",
+      "Timer Name": "计时器名称",
+      "Name for this timer. Make sure this is unique.": "请输入唯一的计时器名称。",
+      "Time Elapsed (ms)": "已过时间（毫秒）",
+      "True if timer has run longer than specified time\n1000 ms = 1 sec": "计时器超过设定时长时满足条件。1000 毫秒等于 1 秒。",
+      "True if stopped": "已停止时也满足条件",
+      "When enabled, returns true if timer is stopped (or never started)": "勾选后，计时器已停止或从未启动时也满足条件。"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.TriggerMenu::Render": {
+      "Trigger Name": "触发器名称",
+      "PrioritySelector": "优先选择",
+      "A PrioritySelector runs a list of composites in order from first to last until one of the composites returns true.": "从前往后执行子节点，直到有一个成功。",
+      "Sequence": "顺序执行",
+      "A Sequence runs a list of composites in order from first to last until one of the composites returns false.": "从前往后执行子节点，直到有一个失败。",
+      "Decorator": "条件节点",
+      "A Decorator will run its child if all conditions return true.\nThink of this as an if condition.": "所有条件都满足时执行子节点。",
+      "Action": "动作",
+      "An action is a final point in a behavior tree.\nActions can return true or false.\nAll branches MUST end in an action.": "动作是行为树的末端，可以成功或失败。每个分支都必须以动作结尾。",
+      "Trigger has too many children to change to this type.\nRemove unnecessary children and try again.": "当前子节点过多。请移除多余节点再更改类型。",
+      "Configuration": "配置",
+      "Filter Type": "筛选类型",
+      "Action List": "动作列表",
+      "Always Continue": "总是继续",
+      "When enabled, the decorator will not end a sequence, even if its child fails.": "子节点失败时也继续后续步骤。",
+      "Conditions": "条件",
+      "Add Condition": "添加条件",
+      "Edit": "编辑",
+      "Remove": "移除",
+      "Save Trigger": "保存触发器",
+      "Must give a trigger name.": "请输入触发器名称。",
+      "Cancel trigger": "取消编辑",
+      "OK": "确定"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.TriggerMenu::RenderAddConditionMenu": {
+      "Add Condition": "添加条件",
+      "Message Logged!": "消息已记录。",
+      "Filter Type": "筛选类型",
+      "Conditions": "条件",
+      "And": "并且",
+      "Or": "或者",
+      "Save condition": "保存条件",
+      "Cancel condition": "取消"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.ConfigurationMenu::Render": {
+      "Settings": "设置",
+      "Profile": "配置方案"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.ConfigurationMenu::RenderOkMenu": {
+      "OK": "确定"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.ProfileMenu::Render": {
+      "Reload": "重新加载",
+      "No profile to reload.": "没有可重新加载的方案。",
+      "The tree MUST be reloaded in order for changes to take effect.": "重新加载行为树后更改才会生效。",
+      "Save": "保存",
+      "Save Profile": "保存方案",
+      "Load": "加载",
+      "Load Profile": "加载方案",
+      "Clear": "清空",
+      "Clear the tree to start over.": "清空行为树并重新开始。",
+      "Loaded Tree": "当前行为树",
+      "Add root": "添加根节点"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.ProfileMenu::CreateTreeForComposite": {
+      "Composite": "组合节点",
+      "Add Child": "添加子节点"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.ProfileMenu::CreateTriggerTextWithPopupMenu": {
+      "Remove": "移除",
+      "Edit": "编辑",
+      "Move Up": "上移",
+      "Move Down": "下移",
+      "Import": "导入",
+      "Export": "导出"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.ProfileMenu::RenderLoadProfileMenu": {
+      "Load Profile": "加载方案",
+      "No profiles in profile directory: ": "该目录中没有配置方案：",
+      "Files": "文件",
+      "Load": "加载",
+      "Profile did not load profile properly": "未能正确加载方案。",
+      "Cancel": "取消"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.ProfileMenu::RenderSaveProfileMenu": {
+      "Save Profile": "保存方案",
+      "File Name": "文件名",
+      "Save": "保存",
+      "Cancel": "取消"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.ProfileMenu::RenderOkMenu": {
+      "OK": "确定"
+    },
+    "TreeRoutine.Routine.BuildYourOwnRoutine.UI.MenuItem.SettingsMenu::Render": {
+      "Ticks Per Second": "每秒检查次数",
+      "Debug": "调试",
+      "Notify about missing entries in config files": "提示配置文件中缺失的条目",
+      "Individual Flask Settings": "逐瓶设置",
+      "Flask ": "药剂栏位 ",
+      " Settings": " 设置",
+      "Hotkey": "快捷键"
     }
   },
   "PluginUpdater": {

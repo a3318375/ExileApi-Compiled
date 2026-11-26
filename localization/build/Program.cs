@@ -96,9 +96,19 @@ internal static class Program
     static IEnumerable<MethodDefinition> MenuMethods(TypeDefinition type, string method)
     {
         var prefix = "<" + method + ">";
-        return type.Methods.Where(m => m.HasBody && (m.Name == method || m.Name.StartsWith(prefix, StringComparison.Ordinal)))
+        var methods = type.Methods.Where(m => m.HasBody && (m.Name == method || m.Name.StartsWith(prefix, StringComparison.Ordinal)))
             .Concat(type.NestedTypes.SelectMany(t => t.Methods)
                 .Where(m => m.HasBody && m.Name.StartsWith(prefix, StringComparison.Ordinal)));
+        foreach (var m in methods)
+        {
+            yield return m;
+            foreach (var a in m.CustomAttributes.Where(a => a.AttributeType.FullName is
+                "System.Runtime.CompilerServices.AsyncStateMachineAttribute" or "System.Runtime.CompilerServices.IteratorStateMachineAttribute"))
+            {
+                var state = ((TypeReference)a.ConstructorArguments[0].Value).Resolve();
+                yield return state.Methods.Single(x => x.Name == "MoveNext");
+            }
+        }
     }
 
     static PropertyDefinition Property(ModuleDefinition module, string key)
