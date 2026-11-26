@@ -51,6 +51,8 @@ internal static class Program
             native.Write(Path.Combine(package, "ExileCore.dll"));
         }
         Sidebar.Translate(root, package, Read<Dictionary<string, string>>("plugin-names.json"), options);
+        options.ReadSymbols = true;
+        options.SymbolReaderProvider = new DefaultSymbolReaderProvider(throwIfNoSymbol: false);
         foreach (var name in settings.Keys.Union(plugins.Keys).Where(n => n != "ExileCore"))
         {
             var relative = Path.Combine("Plugins", "Compiled", name, name + ".dll");
@@ -98,7 +100,7 @@ internal static class Program
                     if (missing.Count != 0) throw new InvalidDataException($"{methodKey}: missing {string.Join(", ", missing)}");
                 }
             }
-            module.Write(Path.Combine(package, relative));
+            module.Write(Path.Combine(package, relative), new WriterParameters { WriteSymbols = module.HasSymbols });
         }
         foreach (var app in new[] { "Loader", "ExileCore" })
         {
