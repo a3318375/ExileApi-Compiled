@@ -553,35 +553,6 @@
     }
   },
   "HighlightedItems": {
-    "HighlightedItems.HighlightedItems::GetPredicate": {
-      "Active IFL": "当前 IFL 过滤条件",
-      "Clear": "清除",
-      "Save": "保存",
-      "Name": "名称",
-      "Group": "分组",
-      "Cancel": "取消",
-      "Failed to match item: ": "匹配物品失败：",
-      "Open Saved Filters": "打开已保存的过滤器",
-      "No saved filters yet.": "尚无已保存的过滤器。",
-      "Saved filters": "已保存的过滤器",
-      "Remove all filters in \"": "移除此分组的所有过滤器：“",
-      "Remove all": "全部移除"
-    },
-    "HighlightedItems.HighlightedItems::DrawSavedFilterRows": {
-      "Delete group": "删除分组",
-      "Remove every filter in this folder": "移除此文件夹中的所有过滤器",
-      "Drag to reorder": "拖动排序",
-      "Load": "加载",
-      "Edit": "编辑",
-      "Delete": "删除",
-      "Hold Shift": "按住 Shift",
-      "Display name": "显示名称",
-      "Short name": "简称",
-      "Folder": "文件夹",
-      "Optional group": "可选分组",
-      "IFL query": "IFL 查询",
-      "Save": "保存"
-    },
     "HighlightedItems.HighlightedItems::DrawIgnoredCellsSettings": {
       "Ignored Inventory Slots (checked = ignored)": "忽略的物品栏格子（勾选表示忽略）"
     }
@@ -615,15 +586,6 @@
     }
   },
   "PassiveSkillTreePlanter": {
-    "PassiveSkillTreePlanter.PassiveSkillTreePlanter::DrawControlPanel": {
-      "Load ": "加载 ",
-      "Operate tree": "操作天赋树",
-      "Show/hide editor": "显示或隐藏编辑器"
-    },
-    "PassiveSkillTreePlanter.PassiveSkillTreePlanter::DrawTreeEditOverlay": {
-      "Solved optimization in ": "优化耗时 ",
-      " nodes": " 个节点"
-    },
     "PassiveSkillTreePlanter.PassiveSkillTreePlanterSettingsMenu::Draw": {
       "Passive Tree": "角色天赋树",
       "Atlas Tree": "异界天赋树",
