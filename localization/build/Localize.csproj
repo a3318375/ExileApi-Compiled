@@ -7,6 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hexa.NET.ImGui" HintPath="../../Hexa.NET.ImGui.dll" Private="false" />
+    <Reference Include="Newtonsoft.Json" HintPath="../../Newtonsoft.Json.dll" Private="false" />
     <PackageReference Include="Mono.Cecil" Version="0.11.6" />
   </ItemGroup>
 </Project>

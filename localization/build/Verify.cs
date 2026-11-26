@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Reflection;
-using System.Reflection.PortableExecutable;
+using System.Runtime.CompilerServices;
+using Hexa.NET.ImGui;
+using Newtonsoft.Json.Linq;
 using System.Runtime.Loader;
 using System.Text.Json;
 
@@ -41,6 +43,66 @@ internal static class Verify
         var names = list.Cast<object>().Select(h => (string?)holder.GetProperty("Name")!.GetValue(h)).ToArray();
         if (!names.Contains("字体设置") || !names.Contains("插件设置"))
             throw new InvalidDataException("Core settings parser produced: " + string.Join(" / ", names));
+        Directory.SetCurrentDirectory(root);
+        VerifyFavorites(core);
+        DrawMenu(core);
         Console.WriteLine($"Windows loaded the localized assemblies and parsed {names.Length} top-level core settings using the bundled font.");
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    static void VerifyFavorites(Assembly core)
+    {
+        var converter = Assembly.Load("MenuZhCN");
+        using var stream = converter.GetManifestResourceStream("Favorites.json")!;
+        var map = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(stream)!;
+        var (english, chinese) = map.First(p => p.Key.StartsWith("Core++") && p.Value.Contains("字号"));
+        const string external = "MyOtherPlugin++My own label";
+        var input = new JObject { ["FavoriteSettings"] = new JObject { ["Content"] = new JArray(
+            new JObject { ["Value"] = english }, new JObject { ["Value"] = external }) } };
+        var conf = core.GetType("ExileCore.CorePluginSettings")!;
+        var serializer = Newtonsoft.Json.JsonSerializer.CreateDefault();
+        var instance = input.ToObject(conf, serializer)!;
+        var node = conf.GetProperty("FavoriteSettings")!.GetValue(instance)!;
+        var entries = ((IList)node.GetType().GetProperty("Content")!.GetValue(node)!).Cast<object>()
+            .Select(v => v.GetType().GetProperty("Value")!.GetValue(v)).ToArray();
+        if (!entries.SequenceEqual(new[] { chinese, external })) throw new InvalidDataException("Loading English favorites");
+        var saved = JObject.FromObject(instance, serializer)["FavoriteSettings"]!["Content"]!;
+        if ((string?)saved[0]!["Value"] != english || (string?)saved[1]!["Value"] != external)
+            throw new InvalidDataException("Saving compatible favorite paths");
+    }
+
+    // Exercise the native ReadyToRun help panel through the real ImGui library
+    // without starting a game or an overlay window.
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    static void DrawMenu(Assembly core)
+    {
+        var log = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".txt");
+        ImGui.CreateContext();
+        try
+        {
+            var io = ImGui.GetIO();
+            io.DisplaySize = new System.Numerics.Vector2(1100, 700);
+            io.DeltaTime = 1f / 60;
+            io.BackendFlags |= ImGuiBackendFlags.RendererHasTextures;
+            ImGui.NewFrame();
+            ImGui.Begin("F12");
+            ImGui.LogToFile(0, log);
+            var menu = core.GetType("ExileCore.MenuWindow")!;
+            menu.GetMethod("DrawHelpMenu", BindingFlags.Instance | BindingFlags.NonPublic)!
+                .Invoke(RuntimeHelpers.GetUninitializedObject(menu), null);
+            ImGui.Selectable("HealthBars###select");
+            ImGui.LogFinish();
+            ImGui.End();
+            ImGui.EndFrame();
+            var visible = File.ReadAllText(log);
+            if (!visible.Contains("本软件可免费使用。") || !visible.Contains("打开使用指南") ||
+                !visible.Contains("生命与能量护盾条 (HealthBars)")) throw new InvalidDataException(visible);
+            Console.WriteLine("Rendered the Chinese help panel and bilingual plugin selector.");
+        }
+        finally
+        {
+            ImGui.DestroyContext();
+            File.Delete(log);
+        }
     }
 }

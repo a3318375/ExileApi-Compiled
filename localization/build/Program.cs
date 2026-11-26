@@ -10,6 +10,16 @@ internal static class Program
     {
         var catalog = Path.Combine(args[0], "localization", "zh-CN");
         var package = args[1];
+        if (args.Length > 3 && args[2] == "--index")
+        {
+            FavoriteIndex.Export(package, catalog, args[3]);
+            return;
+        }
+        if (args.Length > 3 && args[2] == "--pair")
+        {
+            FavoriteIndex.Pair(args[3], args[4], args[5]);
+            return;
+        }
         if (args.Length == 3 && args[2] == "--verify")
         {
             Verify.Run(package, catalog);
@@ -36,9 +46,11 @@ internal static class Program
                 bool hasTip = menu?.Constructor.Parameters.ElementAtOrDefault(1)?.ParameterType.MetadataType == MetadataType.String;
                 native.SetLabel((int)p.MetadataToken.RID, (int)ctor.MetadataToken.RID, label, hasTip, tips);
             }
+            native.AddFavoritesConverter((int)Property(core.MainModule, "ExileCore.CorePluginSettings.FavoriteSettings").MetadataToken.RID);
             native.TranslateLiterals(ui);
             native.Write(Path.Combine(package, "ExileCore.dll"));
         }
+        Sidebar.Translate(root, package, Read<Dictionary<string, string>>("plugin-names.json"), options);
         foreach (var name in settings.Keys.Union(plugins.Keys).Where(n => n != "ExileCore"))
         {
             var relative = Path.Combine("Plugins", "Compiled", name, name + ".dll");
@@ -87,6 +99,16 @@ internal static class Program
                 }
             }
             module.Write(Path.Combine(package, relative));
+        }
+        foreach (var app in new[] { "Loader", "ExileCore" })
+        {
+            var path = Path.Combine(package, app + ".deps.json");
+            var deps = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(path))!;
+            var target = deps["targets"]![deps["runtimeTarget"]!["name"]!.GetValue<string>()]!;
+            target[app + "/1.0.0"]!["dependencies"]!["MenuZhCN"] = "1.0.0";
+            target["MenuZhCN/1.0.0"] = System.Text.Json.Nodes.JsonNode.Parse("""{"runtime":{"MenuZhCN.dll":{}}}""");
+            deps["libraries"]!["MenuZhCN/1.0.0"] = System.Text.Json.Nodes.JsonNode.Parse("""{"type":"project","serviceable":false,"sha512":""}""");
+            File.WriteAllText(path, deps.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
         }
         Console.WriteLine($"Localized {settings.Sum(s => s.Value.Count)} settings and {ui.Count} core strings.");
     }

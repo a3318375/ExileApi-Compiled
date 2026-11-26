@@ -110,6 +110,32 @@ internal sealed class CoreImage : IDisposable
         else rows[rowIndex] = row;
     }
 
+    public void AddFavoritesConverter(int propertyRid)
+    {
+        // Reuse the existing Newtonsoft.Json.JsonConverterAttribute(Type)
+        // member reference without changing any of the upstream metadata tokens.
+        var exemplar = md.CustomAttributes.First(h =>
+        {
+            var attr = md.GetCustomAttribute(h);
+            if (attr.Constructor.Kind != HandleKind.MemberReference) return false;
+            var member = md.GetMemberReference((MemberReferenceHandle)attr.Constructor);
+            if (member.Parent.Kind != HandleKind.TypeReference) return false;
+            var type = md.GetTypeReference((TypeReferenceHandle)member.Parent);
+            return md.GetString(type.Name) == "JsonConverterAttribute" && md.GetString(type.Namespace) == "Newtonsoft.Json"
+                && md.GetBlobBytes(member.Signature)[1] == 1;
+        });
+        var data = new BlobBuilder();
+        data.WriteUInt16(1);
+        data.WriteSerializedString("MenuZhCN.FavoritesConverter, MenuZhCN");
+        data.WriteUInt16(0);
+        int offset = (int)blobs.Position;
+        var length = new BlobBuilder();
+        length.WriteCompressedInteger(data.Count);
+        length.WriteContentTo(blobs);
+        data.WriteContentTo(blobs);
+        rows.Add(((propertyRid << 5) | 9, rows[MetadataTokens.GetRowNumber(exemplar) - 1].Constructor, offset));
+    }
+
     public void TranslateLiterals(Dictionary<string, string> labels)
     {
         var us = streams["#US"].Bytes;

@@ -28,6 +28,18 @@ jobs:
           Expand-Archive $base $package
           dotnet run --project localization/build -c Release -- "$pwd" $package
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $old = Join-Path $env:RUNNER_TEMP 'original-favorites.json'
+          $new = Join-Path $env:RUNNER_TEMP 'localized-favorites.json'
+          $map = Join-Path $env:RUNNER_TEMP 'favorite-map.json'
+          dotnet run --no-build --project localization/build -c Release -- "$pwd" "$pwd" --index $old
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          dotnet run --no-build --project localization/build -c Release -- "$pwd" $package --index $new
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          dotnet run --no-build --project localization/build -c Release -- "$pwd" $package --pair $old $new $map
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          dotnet build localization/favorites -c Release "-p:FavoriteMap=$map" -o "$env:RUNNER_TEMP/favorite-converter"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          Copy-Item "$env:RUNNER_TEMP/favorite-converter/MenuZhCN.dll" $package
           dotnet run --no-build --project localization/build -c Release -- "$pwd" $package --verify
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
