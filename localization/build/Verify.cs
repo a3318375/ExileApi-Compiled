@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Hexa.NET.ImGui;
 using Newtonsoft.Json.Linq;
 using System.Runtime.Loader;
@@ -60,7 +61,9 @@ internal static class Verify
         var input = new JObject { ["FavoriteSettings"] = new JObject { ["Content"] = new JArray(
             new JObject { ["Value"] = english }, new JObject { ["Value"] = external }) } };
         var conf = core.GetType("ExileCore.CorePluginSettings")!;
-        var serializer = Newtonsoft.Json.JsonSerializer.CreateDefault();
+        var settings = (Newtonsoft.Json.JsonSerializerSettings)core.GetType("ExileCore.SettingsContainer")!
+            .GetField("jsonSettings")!.GetValue(null)!;
+        var serializer = Newtonsoft.Json.JsonSerializer.Create(settings);
         var instance = input.ToObject(conf, serializer)!;
         var node = conf.GetProperty("FavoriteSettings")!.GetValue(instance)!;
         var entries = ((IList)node.GetType().GetProperty("Content")!.GetValue(node)!).Cast<object>()
@@ -79,6 +82,7 @@ internal static class Verify
         var cwd = Directory.GetCurrentDirectory();
         var scratch = Directory.CreateTempSubdirectory("exile-menu-");
         var log = Path.Combine(scratch.FullName, "menu.txt");
+        NativeLibrary.Load(Path.Combine(cwd, "cimgui.dll"));
         ImGui.CreateContext();
         try
         {

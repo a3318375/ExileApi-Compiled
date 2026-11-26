@@ -13,6 +13,7 @@ internal static class FavoriteIndex
         var groups = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(
             File.ReadAllText(Path.Combine(catalog, "settings.json")))!;
         var paths = new Dictionary<string, string>();
+        Directory.SetCurrentDirectory(root);
         var dirs = new List<string> { root };
         AssemblyLoadContext.Default.Resolving += (ctx, name) =>
         {
@@ -45,7 +46,14 @@ internal static class FavoriteIndex
             foreach (var t in types)
             {
                 var roots = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(holder))!;
-                parse.Invoke(null, [Activator.CreateInstance(t), roots, -1]);
+                try
+                {
+                    parse.Invoke(null, [Activator.CreateInstance(t), roots, -1]);
+                }
+                catch (TargetInvocationException e) when (group != "ExileCore" && e.InnerException is NullReferenceException)
+                {
+                    Console.WriteLine($"The offline parser stopped after {roots.Count} entries in {t.FullName}: {e.InnerException}");
+                }
                 var owners = group == "ExileCore" ? new HashSet<string> { "Core" } : new HashSet<string> { group };
                 foreach (var plugin in pluginTypes)
                 {
@@ -60,6 +68,7 @@ internal static class FavoriteIndex
                 if (group == "PickIt") owners.Add("Pickit");
                 foreach (var owner in owners)
                 {
+                    if (string.IsNullOrEmpty(owner)) continue;
                     var entry = Activator.CreateInstance(entryType)!;
                     entryType.GetField("OwnerName")!.SetValue(entry, group == "ExileCore" && localized ? "核心" : owner);
                     void Walk(IEnumerable nodes, List<object> parents, string pos)
