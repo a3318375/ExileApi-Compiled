@@ -1,1 +1,432 @@
-{}
+{
+  "PickIt": {
+    "PickIt.PickIt::DrawSettings": {
+      "Show Inventory Slots": "显示物品栏格子",
+      "Moveable Inventory Slots": "允许移动物品栏格子",
+      "Pickup Key: ": "拾取快捷键：",
+      "Mouse Button: ": "鼠标按键：",
+      "Left": "左键",
+      "Right": "右键",
+      "Return Mouse To Position Before Click": "点击后将鼠标移回原位",
+      "Click Chests If No Items Around": "附近没有物品时打开宝箱",
+      "Pickup Radius": "拾取半径",
+      "Chest Radius": "宝箱搜索半径",
+      "Extra Click Delay": "额外点击延迟",
+      "Mouse speed": "鼠标速度",
+      "Time wait for new click": "下次点击前的等待时间",
+      "Use Lazy Looting": "启用自动拾取",
+      "Pause lazy looting for 2 sec: ": "暂停自动拾取 2 秒：",
+      "Pickit Rules": "拾取规则",
+      "Reload All Files": "重新加载所有文件",
+      "Normal Rules": "普通物品规则",
+      "Magic Rules": "魔法物品规则",
+      "Rare Rules": "稀有物品规则",
+      "Unique Rules": "传奇物品规则",
+      "Weight Rules": "权重规则",
+      "Ignore Rules": "忽略规则",
+      "Item Logic": "物品筛选",
+      "Influence Types": "势力类型",
+      "Shaper Items": "塑界者物品",
+      "Elder Items": "裂界者物品",
+      "Hunter Items": "狩猎者物品",
+      "Crusader Items": "圣战者物品",
+      "Warlord Items": "督军物品",
+      "Redeemer Items": "救赎者物品",
+      "Fractured Items": "分裂物品",
+      "Veiled Items": "隐匿物品",
+      "Links/Sockets/RGB": "连接、插槽与三色物品",
+      "RGB Items": "三色相连物品",
+      "Maximum Width##RGBWidth": "最大宽度##RGBWidth",
+      "Maximum Height##RGBHeight": "最大高度##RGBHeight",
+      "Sockets": "插槽数",
+      "Links": "连接数",
+      "Overrides": "优先拾取规则",
+      "Use Weight": "使用权重",
+      "Ignore Scroll Of Wisdom": "忽略知识卷轴",
+      "Pickup Everything": "拾取所有物品",
+      "All Divination Cards": "所有命运卡",
+      "All Currency": "所有通货",
+      "All Uniques": "所有传奇物品",
+      "Quest Items": "任务物品",
+      "Maps": "异界地图",
+      "Lowest Tier": "最低地图阶级",
+      "All Unique Maps": "所有传奇地图",
+      "Fragments": "地图碎片",
+      "Lowest Quality": "最低品质",
+      "Gems": "宝石",
+      "Flasks": "药剂",
+      "Heist Items": "夺宝物品",
+      "Rares##asd": "稀有物品##asd",
+      "Jewels": "珠宝",
+      "Lowest iLvl": "最低物品等级",
+      "Rings": "戒指",
+      "Amulets": "项链",
+      "Belts": "腰带",
+      "Gloves": "手套",
+      "Boots": "靴子",
+      "Helmets": "头部装备",
+      "Armours": "胸甲",
+      "Shields": "盾牌",
+      "Maximum Width##RareShieldWidth": "最大宽度##RareShieldWidth",
+      "Maximum Height##RareShieldHeight": "最大高度##RareShieldHeight",
+      "Weapons": "武器",
+      "Maximum Width##RareWeaponWidth": "最大宽度##RareWeaponWidth",
+      "Maximum Height##RareWeaponHeight": "最大高度##RareWeaponHeight",
+      "Full Rare Set Manager Integration##FRSMI": "稀有套装配方联动##FRSMI",
+      "You must use github.com/DetectiveSquirrel/FullRareSetManager in order to utilize this section\nThis will determine what items are still needed to be picked up\nfor the chaos recipe, it uses FRSM's count to check this.'": "此功能需要 github.com/DetectiveSquirrel/FullRareSetManager。它会根据已收集的套装部件判断混沌石配方还缺哪些装备。",
+      "Override Rare Pickup with Full Rare Set Managers' needed pieces": "按套装缺少的部件覆盖拾取规则",
+      "Pickup Identified items?": "拾取已鉴定物品",
+      "Set the number you wish to pickup for Full Rare Set Manager overrides\nDefault: -1\n-1 will disable these overrides": "设置各部位的拾取数量。默认值 -1 表示使用原规则。",
+      "Max Weapons(s)##FRSMOverrides1": "武器上限##FRSMOverrides1",
+      "Max Helmets##FRSMOverrides2": "头部装备上限##FRSMOverrides2",
+      "Max Body Armors##FRSMOverrides3": "胸甲上限##FRSMOverrides3",
+      "Max Gloves##FRSMOverrides4": "手套上限##FRSMOverrides4",
+      "Max Boots##FRSMOverrides5": "靴子上限##FRSMOverrides5",
+      "Max Belts##FRSMOverrides6": "腰带上限##FRSMOverrides6",
+      "Max Amulets##FRSMOverrides7": "项链上限##FRSMOverrides7",
+      "Max Ring Sets##FRSMOverrides8": "戒指对数上限##FRSMOverrides8",
+      "Set the ilvl Min/Max you wish to pickup for Full Rare Set Manager overrides\nIt is up to you how to use these two features\nit does not change how FullRareSetManager counts its sets.\nDefault: -1\n-1 will disable these overrides": "设置要拾取的物品等级范围。此设置只影响拾取，不影响套数统计。默认值 -1 表示使用原规则。",
+      "Minimum Item Level##FRSMOverrides9": "最低物品等级##FRSMOverrides9",
+      "Max Item Level##FRSMOverrides10": "最高物品等级##FRSMOverrides10"
+    }
+  },
+  "BasicFlaskRoutine": {
+    "TreeRoutine.Routine.BasicFlaskRoutine.BasicFlaskRoutine::DrawSettings": {
+      "Plugin Options": "插件选项",
+      "Enable in Hideout": "在藏身处启用",
+      "Ticks Per Second": "每秒检查次数",
+      "Determines how many times the plugin checks flasks every second.\nLower for less resources, raise for faster response (but higher chance to chug potions).": "降低检查频率可减少资源占用。提高频率可以更快响应，但也可能过于频繁地使用药剂。",
+      "Debug Mode": "调试模式",
+      "Disable Defensive and Offensive Flasking": "停用防御与进攻药剂",
+      "BossingModeHotkey": "首领模式快捷键",
+      "Notify about missing entries in config files": "提示配置文件中缺失的条目",
+      "Flask Options": "药剂选项",
+      "Individual Flask Settings": "逐瓶设置",
+      "Flask ": "药剂栏位 ",
+      " Settings": " 设置",
+      "Enable": "启用",
+      "Hotkey": "快捷键",
+      "Reserved Uses": "保留使用次数",
+      "The absolute number of uses reserved on a flask.\nSet to 1 to always have 1 use of the flask available for manual use.": "预留的药剂使用次数。设为 1 时，始终为手动使用保留一次。",
+      "Health and Mana": "生命与魔力",
+      "Settings": "设置",
+      "Force Bubbling as Instant only": "部分立即回复药剂仅用作瞬回",
+      "When enabled, flasks with the Bubbling mod will only be used as an instant flask.": "启用后，带部分立即回复词缀的药剂仅在需要瞬回时使用。",
+      "Force Panicked as Instant only": "贫血时立即回复药剂仅用作瞬回",
+      "When enabled, flasks with the Panicked mod will only be used as an instant flask. \nNote, Panicked will not be used until under 35%% with this enabled.": "启用后，带贫血时立即回复词缀的药剂仅在生命低于 35%% 时使用。",
+      "Health Flask": "生命药剂",
+      "Min Life % Auto HP Flask": "使用生命药剂的生命阈值（%）",
+      "Min Life % Auto Instant HP Flask": "使用瞬回生命药剂的生命阈值（%）",
+      "Enable use Life/Hybrid Flasks to restore Energy Shield": "使用生命或复合药剂回复能量护盾",
+      "When enabled, Life-recovery flasks will also be used to recovery Energy Shield.\nWarning: Life/Hybrid Flasks without Remove Ailments affix will not be used when on full life \n        (example: ~20 points non-Reserved Life is always equal full life) because it is game mechanics.": "启用后也会尝试通过生命回复药剂回复能量护盾。满生命时，游戏不允许使用没有解除异常状态词缀的生命或复合药剂。即使只有约 20 点未保留生命，回满这部分也算满生命。",
+      "Min Energy Shield % Auto HP Flask": "使用生命药剂的能量护盾阈值（%）",
+      "Min Energy Shield % Auto Instant HP Flask": "使用瞬回生命药剂的能量护盾阈值（%）",
+      "Disable Life/Hybrid Flask Offensive/Defensive Usage": "不将生命或复合药剂用于进攻和防御",
+      "Mana Flask": "魔力药剂",
+      "Min Mana % Auto Mana Flask": "使用魔力药剂的魔力阈值（%）",
+      "Min Mana % Auto Instant MP Flask": "使用瞬回魔力药剂的魔力阈值（%）",
+      "Min Mana Auto Mana Flask": "使用魔力药剂的魔力阈值（点）",
+      "Remove Ailments": "解除异常状态",
+      "Ailments": "异常状态",
+      "Frozen": "冰冻",
+      "Burning": "燃烧",
+      "Shocked": "感电",
+      "Cursed": "诅咒",
+      "Poison": "中毒",
+      "Bleed": "流血",
+      "Corrupting Blood Stacks": "腐化之血层数",
+      "Speed Flasks": "移动药剂",
+      "Flasks": "药剂",
+      "Quicksilver Flask": "水银药剂",
+      "Silver Flask": "真银药剂",
+      "Milliseconds Spent Moving": "持续移动时间（毫秒）",
+      "Milliseconds spent moving before flask will be used.\n1000 milliseconds = 1 second": "持续移动达到此时长后使用药剂。1000 毫秒等于 1 秒。",
+      "Cyclone": "旋风斩",
+      "Using Speed Flasks while Cycloning": "旋风斩期间使用移动药剂",
+      "Monster Count": "怪物数量",
+      "Set to 0 to disable.": "设为 0 可关闭。",
+      "Monster Distance": "怪物距离",
+      "Normal Monsters": "普通怪物",
+      "Magic Monsters": "魔法怪物",
+      "Rare Monsters": "稀有怪物",
+      "Unique Monsters": "传奇怪物",
+      "Ignore Full Health Unique Monsters": "忽略满生命的传奇怪物",
+      "Defensive Flasks": "防御药剂",
+      "Min Life %": "生命阈值（%）",
+      "Min ES %": "能量护盾阈值（%）",
+      "Use offensive flasks for defense": "将进攻药剂同时用于防御",
+      "Offensive Flasks": "进攻药剂"
+    }
+  },
+  "PluginUpdater": {
+    "PluginUpdater.ConsoleLog::RenderConsoleLog": {
+      "Console Log": "控制台日志"
+    },
+    "PluginUpdater.PluginRenderer::Render": {
+      "Manage": "管理",
+      "Add&Browse": "浏览与添加",
+      "Settings": "设置"
+    },
+    "PluginUpdater.PluginRenderer::RenderSettings": {
+      "Check for updates on startup": "启动时检查更新",
+      "Wrap log messages": "日志自动换行",
+      "Automatically check for plugin updates when the game starts": "启动游戏时自动检查插件更新",
+      "Automatically check for updates periodically": "定期自动检查更新",
+      " minutes": " 分钟",
+      " hours": " 小时",
+      "24 hours": "24 小时",
+      "1 hour": "1 小时",
+      "Check every": "检查间隔"
+    },
+    "PluginUpdater.PluginRenderer::RenderUpdateButtons": {
+      "Checking For Updates... (": "正在检查更新（",
+      "Checking For Updates...": "正在检查更新…",
+      "Check For Updates": "检查更新",
+      "Refresh (local)": "刷新本地列表",
+      "Updating All...": "正在更新全部插件…",
+      "Update All": "全部更新",
+      "Filter": "筛选"
+    },
+    "PluginUpdater.PluginRenderer::RenderPluginsTable": {
+      "\n\nNo source plugins detected. To install, go to the Add&Browse tab\n\n": "\n\n没有找到源码插件。请到“浏览与添加”页安装。\n\n"
+    },
+    "PluginUpdater.PluginRenderer::SetupTableColumns": {
+      "Plugin": "插件",
+      "Branch": "分支",
+      "Commit": "提交",
+      "Actions": "操作"
+    },
+    "PluginUpdater.PluginRenderer::RenderTableRows": {
+      "Error rendering plugin ": "显示插件时出错："
+    },
+    "PluginUpdater.PluginRenderer::RenderBranchSelector": {
+      "Switching ": "正在将 ",
+      " to branch ": " 切换到分支 ",
+      "Successfully switched ": "已切换插件 ",
+      "Switch failed: ": "切换失败："
+    },
+    "PluginUpdater.PluginRenderer::RenderCommitInfo": {
+      "Update failed": "更新失败",
+      "No commit information": "没有提交信息",
+      "Currently on latest commit (": "已是最新提交（",
+      " uncommitted changes)": " 处未提交的更改）"
+    },
+    "PluginUpdater.PluginRenderer::RenderAddPluginSection": {
+      "Repository URL": "仓库地址",
+      "Cloning...": "正在克隆…",
+      "Clone": "克隆",
+      "Please enter a repository URL": "请输入仓库地址",
+      "Clone the repository into the plugins folder": "将仓库克隆到插件文件夹",
+      "Enter the URL of a Git repository to clone. The repository will be cloned into the Plugins\\Source folder.": "输入 Git 仓库地址，插件将克隆到 Plugins\\Source 目录。",
+      "Or link a local folder": "或关联本地文件夹",
+      "Pick csproj file": "选择项目文件",
+      ".csproj file path": ".csproj 文件路径",
+      "Name of folder to create": "要创建的文件夹名称",
+      "Will overwrite link config in '": "将覆盖此位置的关联配置：",
+      "Link": "关联"
+    },
+    "PluginUpdater.PluginRenderer::RenderPluginBrowser": {
+      "Add plugin not in the list": "添加列表之外的插件",
+      "Browse and download available plugins from the ExileCore organization.": "浏览并下载 ExileCore 组织提供的插件。",
+      "Loading available plugins...": "正在加载可用插件…",
+      "Retry": "重试",
+      "No plugins found in the repository.": "仓库中没有可用插件。",
+      "Filter": "筛选",
+      "Plugin": "插件",
+      "Description": "说明",
+      "Original Author": "原作者",
+      "Endorsed Fork": "推荐分支",
+      "Last Updated": "最近更新",
+      "Action": "操作",
+      "Delete##": "删除##",
+      "Delete Plugin?": "删除插件？",
+      "Delete this plugin": "删除此插件",
+      "Downloading...##": "正在下载…##",
+      "Download##": "下载##",
+      "Latest commit: ": "最新提交："
+    },
+    "PluginUpdater.PluginRenderer::ShowDeletePluginPopup": {
+      "Delete Plugin?": "删除插件？",
+      "Are you sure you want to delete the plugin '": "确定删除插件“",
+      "This action cannot be undone!": "此操作无法撤销。",
+      "Delete": "删除",
+      "Successfully deleted plugin: ": "已删除插件：",
+      "Failed to delete plugin: ": "删除插件失败：",
+      "Cancel": "取消"
+    },
+    "PluginUpdater.PluginRenderer::RenderActionButtons": {
+      "Updating...##": "正在更新…##",
+      "Update##": "更新##",
+      "Force update##": "强制更新##",
+      "Force update plugin ": "强制更新插件 ",
+      "Are you sure you want to for update the plugin '": "确定强制更新插件“",
+      "'?\nLocal changes will be lost": "”吗？\n本地修改将会丢失。",
+      "Force update": "强制更新",
+      "Cancel": "取消",
+      "Reverting...##": "正在回退…##",
+      "Revert##": "回退##",
+      "Revert to the previous commit ": "回退到上一次提交 ",
+      "Open folder##": "打开文件夹##",
+      "Delete##": "删除##",
+      "Delete Plugin?": "删除插件？"
+    }
+  },
+  "FullRareSetManager": {
+    "FullRareSetManager.FullRareSetManagerCore::DrawSettings": {
+      "Add##": "添加##",
+      "Remove##": "移除##"
+    }
+  },
+  "PreloadAlert": {
+    "PreloadAlert.PreloadAlert::DrawSettings": {
+      "Dump preloads": "导出预加载列表",
+      "Dump grouped preloads": "按组导出预加载列表",
+      "Show all preloads": "显示所有预加载项",
+      "DrawAlerts": "已显示的提醒",
+      "Area Change Count: ": "区域切换次数：",
+      "Close": "关闭"
+    }
+  },
+  "HighlightedItems": {
+    "HighlightedItems.HighlightedItems::GetPredicate": {
+      "Active IFL": "当前 IFL 过滤条件",
+      "Clear": "清除",
+      "Save": "保存",
+      "Name": "名称",
+      "Group": "分组",
+      "Cancel": "取消",
+      "Failed to match item: ": "匹配物品失败：",
+      "Open Saved Filters": "打开已保存的过滤器",
+      "No saved filters yet.": "尚无已保存的过滤器。",
+      "Saved filters": "已保存的过滤器",
+      "Remove all filters in \"": "移除此分组的所有过滤器：“",
+      "Remove all": "全部移除"
+    },
+    "HighlightedItems.HighlightedItems::DrawSavedFilterRows": {
+      "Delete group": "删除分组",
+      "Remove every filter in this folder": "移除此文件夹中的所有过滤器",
+      "Drag to reorder": "拖动排序",
+      "Load": "加载",
+      "Edit": "编辑",
+      "Delete": "删除",
+      "Hold Shift": "按住 Shift",
+      "Display name": "显示名称",
+      "Short name": "简称",
+      "Folder": "文件夹",
+      "Optional group": "可选分组",
+      "IFL query": "IFL 查询",
+      "Save": "保存"
+    },
+    "HighlightedItems.HighlightedItems::DrawIgnoredCellsSettings": {
+      "Ignored Inventory Slots (checked = ignored)": "忽略的物品栏格子（勾选表示忽略）"
+    }
+  },
+  "Stashie": {
+    "Stashie.StashieCore::DrawReloadConfigButton": {
+      "Reload config": "重新加载配置",
+      "Reloaded Stashie config": "已重新加载 Stashie 配置"
+    },
+    "Stashie.StashieCore::DrawIgnoredCellsSettings": {
+      "Copy Inventory": "复制物品栏布局",
+      "Checked = Item will be ignored": "勾选表示忽略物品",
+      "UnChecked = Item will be processed": "未勾选表示处理物品"
+    },
+    "Stashie.StashieCore::GenerateMenu": {
+      "Close": "关闭"
+    }
+  },
+  "DevTree": {
+    "DevTree.ExclusionSettings::Render": {
+      "Reset": "重置",
+      "Rebuild excluded member list": "重建排除列表",
+      "Excluded Members": "已排除的成员",
+      "Type": "类型",
+      "Name": "名称",
+      "Delete": "删除",
+      "State": "状态",
+      "Found": "已找到",
+      "Not found": "未找到",
+      "Add": "添加"
+    }
+  },
+  "PassiveSkillTreePlanter": {
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanter::DrawControlPanel": {
+      "Load ": "加载 ",
+      "Operate tree": "操作天赋树",
+      "Show/hide editor": "显示或隐藏编辑器"
+    },
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanter::DrawTreeEditOverlay": {
+      "Solved optimization in ": "优化耗时 ",
+      " nodes": " 个节点"
+    },
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanterSettingsMenu::Draw": {
+      "Passive Tree": "角色天赋树",
+      "Atlas Tree": "异界天赋树",
+      "Build Edit": "编辑方案",
+      "GGG tree JSON": "GGG 天赋树数据",
+      "Settings": "设置"
+    },
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanterSettingsMenu::DrawOfficialTreeExportTab": {
+      "Open skilltree-export on GitHub##ggg": "在 GitHub 查看角色天赋树数据##ggg",
+      "Open atlastree-export on GitHub##ggg": "在 GitHub 查看异界天赋树数据##ggg",
+      "Redownload SkillTreeData.json##gggPassive": "重新下载 SkillTreeData.json##gggPassive",
+      "Redownload AtlasTreeData.json##gggAtlas": "重新下载 AtlasTreeData.json##gggAtlas"
+    },
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanterSettingsMenu::DrawBuildSelectionSharedMenu": {
+      "Open Build Folder": "打开方案文件夹",
+      "(Re)Load List": "刷新列表",
+      "Character build": "角色方案",
+      "Atlas build": "异界方案",
+      "Open forum thread##forumBtn_": "打开论坛帖子##forumBtn_",
+      "Add new build ": "添加新方案 "
+    },
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanterSettingsMenu::DrawBuildNotesSubsection": {
+      "Show notes##": "显示备注##"
+    },
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanterSettingsMenu::DrawTreeLoadTableSection": {
+      "Load": "加载",
+      "Type": "类型",
+      "Tree Name": "天赋树名称",
+      "LOAD": "加载"
+    },
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanterSettingsMenu::DrawBuildEdit": {
+      "Open Build Folder": "打开方案文件夹",
+      "(Re)Load List": "刷新列表",
+      "Build to edit": "要编辑的方案",
+      "Rename Build": "重命名方案",
+      "Save Build": "保存方案",
+      "Unsaved changes detected": "有未保存的修改",
+      "Forum Thread": "论坛帖子",
+      "Notes": "备注",
+      "Drag": "拖动",
+      "Type": "类型",
+      "Tree Name": "天赋树名称",
+      "Skill Tree": "天赋树",
+      "No Data Selected": "尚未选择数据",
+      "Export current build": "导出当前方案",
+      "Current character tree": "当前角色天赋树",
+      "Current atlas tree": "当前异界天赋树"
+    },
+    "PassiveSkillTreePlanter.PassiveSkillTreePlanterSettingsMenu::DrawTreeEdit": {
+      "(tree ": "（天赋树 ",
+      "Drag to reorder": "拖动排序",
+      "X##REMOVERULE": "移除##REMOVERULE"
+    },
+    "PassiveSkillTreePlanter.UrlImporters.BaseUrlImporter::DrawAddInterface": {
+      "Import ": "导入 ",
+      " build": " 方案",
+      "Url": "网址",
+      "Not a valid ": "无效的 ",
+      " url": " 网址",
+      "No variants in the requested build": "此方案没有变体",
+      "Tree": "天赋树",
+      "Selected variant does not contain valid build data": "所选变体没有有效的方案数据",
+      "Progress": "进度",
+      "Import": "导入",
+      " pts": " 点",
+      " import (": " 导入（",
+      "Loading the build data...": "正在加载方案数据…",
+      "Data fetch failed: ": "数据获取失败："
+    }
+  }
+}

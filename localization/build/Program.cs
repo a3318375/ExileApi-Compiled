@@ -74,7 +74,7 @@ internal static class Program
                     var type = module.GetType(methodKey[..separator]) ?? throw new InvalidDataException(methodKey);
                     var method = methodKey[(separator + 2)..];
                     var missing = translations.Keys.ToHashSet();
-                    foreach (var m in type.Methods.Where(m => m.HasBody && (m.Name == method || method == "*")))
+                    foreach (var m in MenuMethods(type, method))
                     {
                         foreach (var i in m.Body.Instructions)
                         {
@@ -89,6 +89,16 @@ internal static class Program
             module.Write(Path.Combine(package, relative));
         }
         Console.WriteLine($"Localized {settings.Sum(s => s.Value.Count)} settings and {ui.Count} core strings.");
+    }
+
+    // Callbacks written inside a menu method can live on a compiler-generated
+    // closure type. Match their owning method, never a whole plugin assembly.
+    static IEnumerable<MethodDefinition> MenuMethods(TypeDefinition type, string method)
+    {
+        var prefix = "<" + method + ">";
+        return type.Methods.Where(m => m.HasBody && (m.Name == method || m.Name.StartsWith(prefix, StringComparison.Ordinal)))
+            .Concat(type.NestedTypes.SelectMany(t => t.Methods)
+                .Where(m => m.HasBody && m.Name.StartsWith(prefix, StringComparison.Ordinal)));
     }
 
     static PropertyDefinition Property(ModuleDefinition module, string key)
