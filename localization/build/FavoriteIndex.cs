@@ -21,6 +21,10 @@ internal static class FavoriteIndex
             return dep is null ? null : ctx.LoadFromAssemblyPath(dep);
         };
         var core = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine(root, "ExileCore.dll"));
+        // SettingsParser reports unrecognized non-menu properties through the
+        // process logger. Give it the same interface without starting the HUD.
+        var logger = Assembly.Load("Serilog").GetType("Serilog.Log")!.GetProperty("Logger")!.GetValue(null);
+        core.GetType("ExileCore.Core")!.GetProperty("Logger")!.SetValue(null, logger);
         var holder = core.GetType("ExileCore.Shared.Interfaces.ISettingsHolder")!;
         var childList = holder.GetProperty("Children")!;
         var parse = core.GetType("ExileCore.SettingsParser")!.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static)!;
