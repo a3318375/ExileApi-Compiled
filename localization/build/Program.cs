@@ -108,7 +108,12 @@ internal static class Program
             target[app + "/1.0.0"]!["dependencies"]!["MenuZhCN"] = "1.0.0";
             target["MenuZhCN/1.0.0"] = System.Text.Json.Nodes.JsonNode.Parse("""{"runtime":{"MenuZhCN.dll":{}}}""");
             deps["libraries"]!["MenuZhCN/1.0.0"] = System.Text.Json.Nodes.JsonNode.Parse("""{"type":"project","serviceable":false,"sha512":""}""");
-            File.WriteAllText(path, deps.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
+            var json = deps.ToJsonString(new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
+            File.WriteAllText(path, json.ReplaceLineEndings("\n"));
         }
         Console.WriteLine($"Localized {settings.Sum(s => s.Value.Count)} settings and {ui.Count} core strings.");
     }

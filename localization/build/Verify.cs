@@ -56,7 +56,8 @@ internal static class Verify
         var converter = Assembly.Load("MenuZhCN");
         using var stream = converter.GetManifestResourceStream("Favorites.json")!;
         var map = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(stream)!;
-        var (english, chinese) = map.First(p => p.Key.StartsWith("Core++") && p.Value.Contains("字号"));
+        const string english = "Core++Font Settings++Font Size", chinese = "核心++字体设置++字号";
+        if (map.GetValueOrDefault(english) != chinese) throw new InvalidDataException("Font size breadcrumb");
         const string external = "MyOtherPlugin++My own label";
         var input = new JObject { ["FavoriteSettings"] = new JObject { ["Content"] = new JArray(
             new JObject { ["Value"] = english }, new JObject { ["Value"] = external }) } };
