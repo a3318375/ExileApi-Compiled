@@ -7,6 +7,9 @@ on:
       - 'localization/**'
       - '.github/workflows/zh-cn-menu.yml'
       - 'ExileCore.dll'
+      - 'Hexa.NET.ImGui.dll'
+      - 'MenuZhCN.dll'
+      - 'ReadMe.md'
       - 'Plugins/Compiled/**/*.dll'
 permissions:
   contents: read
@@ -15,6 +18,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          # Original English distribution from upstream v330.10.
+          ref: 8208ad22f3f1ee13244d02a80002052de12a9ce2
+          path: upstream-input
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
@@ -23,17 +31,19 @@ jobs:
         run: |
           $package = Join-Path $env:RUNNER_TEMP 'ExileApi-zh-CN'
           $base = Join-Path $env:RUNNER_TEMP 'upstream.zip'
-          git archive -o $base HEAD -- . ':(exclude)localization' ':(exclude).github' ':(exclude).gitignore' ':(exclude).gitmodules'
+          $english = Join-Path $pwd 'upstream-input'
+          git -C $english archive -o $base HEAD -- . ':(exclude).github' ':(exclude).gitignore' ':(exclude).gitmodules'
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           Expand-Archive $base $package
-          dotnet run --project localization/build -c Release -- "$pwd" $package
+          Copy-Item ReadMe.md $package -Force
+          dotnet run --project localization/build -c Release -- "$pwd" $package --source $english
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           $old = Join-Path $env:RUNNER_TEMP 'original-favorites.json'
           $new = Join-Path $env:RUNNER_TEMP 'localized-favorites.json'
           $map = Join-Path $env:RUNNER_TEMP 'favorite-map.json'
-          dotnet run --no-build --project localization/build -c Release -- "$pwd" "$pwd" --index $old
+          dotnet run --no-build --project localization/build -c Release -- "$pwd" $english --index $old
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
-          dotnet run --no-build --project localization/build -c Release -- "$pwd" $package --index $new
+          dotnet run --no-build --project localization/build -c Release -- "$pwd" $package --localized-index $new
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           dotnet run --no-build --project localization/build -c Release -- "$pwd" $package --pair $old $new $map
           if ($LASTEXITCODE) { exit $LASTEXITCODE }

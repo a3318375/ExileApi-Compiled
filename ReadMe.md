@@ -1,6 +1,12 @@
 Compiled ExileAPI
 ==================
 
+### 简体中文菜单
+
+本分支基于上游 v330.10。下载中文版，在 Windows 上解压后运行 `Loader.exe`，按 **F12** 打开或收起菜单。插件列表同时显示中文功能名和英文插件名。[下载简体中文版 ZIP](https://github.com/a3318375/ExileApi-Compiled/archive/refs/heads/zh-cn-menu.zip)
+
+菜单中的游戏术语参照流亡编年史简体版。译文位于 `localization/zh-CN`，此分支的 GitHub Actions 使用 Windows 从对应的英文版本重新生成中文发行包。[流亡编年史](https://poedb.tw/cn/)
+
 It is highly recommended that you use the [limited user method explained here](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/676345-run-poe-limited-user.html).
 
 This reads the memory of the Path of Exile client application and displays it on transparent overlay.

@@ -7,7 +7,7 @@ internal static class FavoriteIndex
 {
     // Use the shipped settings parser and PathOf in each language. Pair nodes
     // by owner/type and tree position, independent of spelling and capitalization.
-    public static void Export(string root, string catalog, string file)
+    public static void Export(string root, string catalog, string file, bool localized)
     {
         root = Path.GetFullPath(root);
         var groups = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(
@@ -35,10 +35,13 @@ internal static class FavoriteIndex
                 dirs.Add(dir);
                 asm = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine(dir, group + ".dll"));
             }
-            var pluginTypes = asm.GetTypes().Where(t => !t.IsAbstract && !t.ContainsGenericParameters &&
+            // The core contains optional compiler services unrelated to settings.
+            // Looking up its known settings type avoids loading MSBuild at runtime.
+            Type[] definitions = group == "ExileCore" ? [] : asm.GetTypes();
+            var pluginTypes = definitions.Where(t => !t.IsAbstract && !t.ContainsGenericParameters &&
                 core.GetType("ExileCore.Shared.Interfaces.IPlugin")!.IsAssignableFrom(t)).ToList();
             var types = group == "ExileCore" ? [core.GetType("ExileCore.CoreSettings")!] :
-                asm.GetTypes().Where(t => settings.IsAssignableFrom(t) && !t.IsAbstract && t.GetConstructor(Type.EmptyTypes) != null).ToArray();
+                definitions.Where(t => settings.IsAssignableFrom(t) && !t.IsAbstract && t.GetConstructor(Type.EmptyTypes) != null).ToArray();
             foreach (var t in types)
             {
                 var roots = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(holder))!;
@@ -58,7 +61,7 @@ internal static class FavoriteIndex
                 foreach (var owner in owners)
                 {
                     var entry = Activator.CreateInstance(entryType)!;
-                    entryType.GetField("OwnerName")!.SetValue(entry, owner);
+                    entryType.GetField("OwnerName")!.SetValue(entry, group == "ExileCore" && localized ? "核心" : owner);
                     void Walk(IEnumerable nodes, List<object> parents, string pos)
                     {
                         int i = 0;

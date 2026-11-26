@@ -512,6 +512,7 @@
     "PluginUpdater.PluginRenderer::ShowDeletePluginPopup": {
       "Delete Plugin?": "删除插件？",
       "Are you sure you want to delete the plugin '": "确定删除插件“",
+      "'?": "”吗？",
       "This action cannot be undone!": "此操作无法撤销。",
       "Delete": "删除",
       "Successfully deleted plugin: ": "已删除插件：",

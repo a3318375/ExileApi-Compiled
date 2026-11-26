@@ -10,9 +10,9 @@ internal static class Program
     {
         var catalog = Path.Combine(args[0], "localization", "zh-CN");
         var package = args[1];
-        if (args.Length > 3 && args[2] == "--index")
+        if (args.Length == 4 && args[2] is "--index" or "--localized-index")
         {
-            FavoriteIndex.Export(package, catalog, args[3]);
+            FavoriteIndex.Export(package, catalog, args[3], args[2] == "--localized-index");
             return;
         }
         if (args.Length > 3 && args[2] == "--pair")
@@ -30,7 +30,7 @@ internal static class Program
         var tips = Read<Dictionary<string, string>>("tooltips.json");
         var ui = Read<Dictionary<string, string>>("core-text.json");
         var plugins = Read<Dictionary<string, Dictionary<string, Dictionary<string, string>>>>("plugin-text.json");
-        var root = Path.GetFullPath(args[0]);
+        var root = Path.GetFullPath(args.Length == 4 && args[2] == "--source" ? args[3] : args[0]);
         using var resolver = new DefaultAssemblyResolver();
         resolver.AddSearchDirectory(root);
         resolver.AddSearchDirectory(Path.GetDirectoryName(typeof(object).Assembly.Location));

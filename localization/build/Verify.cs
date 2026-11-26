@@ -76,15 +76,19 @@ internal static class Verify
     [MethodImpl(MethodImplOptions.NoInlining)]
     static void DrawMenu(Assembly core)
     {
-        var log = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".txt");
+        var cwd = Directory.GetCurrentDirectory();
+        var scratch = Directory.CreateTempSubdirectory("exile-menu-");
+        var log = Path.Combine(scratch.FullName, "menu.txt");
         ImGui.CreateContext();
         try
         {
+            Directory.SetCurrentDirectory(scratch.FullName);
             var io = ImGui.GetIO();
             io.DisplaySize = new System.Numerics.Vector2(1100, 700);
             io.DeltaTime = 1f / 60;
             io.BackendFlags |= ImGuiBackendFlags.RendererHasTextures;
             ImGui.NewFrame();
+            ImGui.SetNextWindowSize(new System.Numerics.Vector2(1000, 600));
             ImGui.Begin("F12");
             ImGui.LogToFile(0, log);
             var menu = core.GetType("ExileCore.MenuWindow")!;
@@ -102,7 +106,8 @@ internal static class Verify
         finally
         {
             ImGui.DestroyContext();
-            File.Delete(log);
+            Directory.SetCurrentDirectory(cwd);
+            scratch.Delete(recursive: true);
         }
     }
 }
